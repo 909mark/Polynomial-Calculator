@@ -1,5 +1,7 @@
 package com.example;
 
+import com.example.model.Monomial;
+import com.example.model.Polynomial;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -17,6 +19,16 @@ public class Application extends javafx.application.Application {
     }
 
     public static void main(String[] args) {
-        launch();
+        //launch();
+        Polynomial p1 = new Polynomial();
+        p1.addMonom(new Monomial(1, 1));
+        p1.addMonom(new Monomial(2, 2));
+        Polynomial p2 = new Polynomial();
+        p2.addMonom(new Monomial(1, 4));
+        p2.addMonom(new Monomial(3, 2));
+        Polynomial res = p2.add(p1);
+        System.out.println(p1);
+        System.out.println(p2);
+        System.out.println(res);
     }
 }
