@@ -1,7 +1,7 @@
 package com.example.model;
 
 public class Monomial {
-    private Integer grad;
+    private final Integer grad;
     private Double coeff;
 
     public Monomial(Integer grad, Double coeff) {
@@ -17,10 +17,6 @@ public class Monomial {
         return grad;
     }
 
-    public void setGrad(Integer grad) {
-        this.grad = grad;
-    }
-
     public Double getCoeff() {
         return coeff;
     }
@@ -28,6 +24,4 @@ public class Monomial {
     public void setCoeff(Double coeff) {
         this.coeff = coeff;
     }
-
-
 }
