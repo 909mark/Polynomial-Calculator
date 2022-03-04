@@ -65,7 +65,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example.pt2022_30221_vicsi_mark_otto_assignment_1/com.example.Application
+                                com.calculator.pt2022_30221_vicsi_mark_otto_assignment_1/com.calculator.CalculatorApplication
                             </mainClass>
                         </configuration>
                     </execution>

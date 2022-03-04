@@ -4,8 +4,9 @@ module com.example.pt2022_30221_vicsi_mark_otto_assignment_1 {
 
     requires org.controlsfx.controls;
 
-    opens com.example to javafx.fxml;
-    exports com.example;
-    exports com.example.controller;
-    opens com.example.controller to javafx.fxml;
+    opens com.calculator to javafx.fxml;
+    exports com.calculator;
+    exports com.calculator.controller;
+    exports com.calculator.model;
+    opens com.calculator.controller to javafx.fxml;
 }
