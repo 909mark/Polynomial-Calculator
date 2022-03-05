@@ -17,7 +17,7 @@ public class Polynomial {
             return "0";
         StringBuilder sb = new StringBuilder();
         this.terms.forEach(
-                o -> sb.append(String.format("%+.3f", o.getCoeff()))
+                o -> sb.append(String.format("%+.2f", o.getCoeff()))
                         .append("X^")
                         .append(o.getDegree())
         );

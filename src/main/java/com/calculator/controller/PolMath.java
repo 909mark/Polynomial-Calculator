@@ -18,14 +18,14 @@ public class PolMath {
         Polynomial res = new Polynomial();
         p1.getTerms().forEach(o -> addMonom(res, o));
         p2.getTerms().forEach(o -> addMonom(res, o));
-        return res;
+        return res.refactor().sort();
     }
 
     public static Polynomial subtract(final Polynomial p1, final Polynomial p2) {
         Polynomial res = new Polynomial();
         p1.getTerms().forEach(o -> addMonom(res, o));
         p2.getTerms().forEach(o -> subtractMono(res, o));
-        return res;
+        return res.refactor().sort();
     }
 
     public static Polynomial multiply(final Polynomial p1, final Polynomial p2) {
@@ -37,7 +37,7 @@ public class PolMath {
                         m1.getCoeff() * m2.getCoeff()));
             }
         }
-        return res;
+        return res.refactor().sort();
     }
 
     public static Polynomial multiply(final Polynomial p, final Monomial m) {
@@ -48,7 +48,7 @@ public class PolMath {
                     mono.getCoeff() * m.getCoeff())
             );
         }
-        return res;
+        return res.refactor().sort();
     }
 
     public static List<Polynomial> divide(Polynomial p1, Polynomial p2) {
@@ -66,7 +66,7 @@ public class PolMath {
             addMonom(res, tempMono);
             remainder = subtract(remainder, multiply(p2, tempMono));
         }
-        return new ArrayList<>(List.of(res, remainder));
+        return new ArrayList<>(List.of(res.refactor().sort(), remainder.refactor().sort()));
     }
 
     public static Polynomial integralOf(final Polynomial p) {
@@ -77,7 +77,7 @@ public class PolMath {
                     m.getCoeff() / (m.getDegree() + 1)
             ));
         }
-        return res;
+        return res.refactor().sort();
     }
 
     public static Polynomial derivativeOf(final Polynomial p) {
@@ -90,7 +90,7 @@ public class PolMath {
                 ));
             }
         }
-        return res;
+        return res.refactor().sort();
     }
 
     public static void addMonom(final Polynomial p, final Monomial m) {

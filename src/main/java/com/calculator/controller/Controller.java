@@ -1,6 +1,6 @@
 package com.calculator.controller;
 
-import com.calculator.constans.CONSTANTS;
+import com.calculator.constants.CONSTANTS;
 import com.calculator.controller.builder.Builder;
 import com.calculator.model.Polynomial;
 import javafx.event.ActionEvent;
@@ -112,7 +112,7 @@ public class Controller implements Initializable {
                 result.setText(res.get(0).toString() + ", r = " + res.get(1).toString());
             }
             case "Derive" -> result.setText(PolMath.derivativeOf(pol1).toString());
-            case "Integrate" -> result.setText(PolMath.integralOf(pol1).toString());
+            case "Integrate" -> result.setText(PolMath.integralOf(pol1) + "+C");
             default -> result.setText("Whoops");
         }
     }
