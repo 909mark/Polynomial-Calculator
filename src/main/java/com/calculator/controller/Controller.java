@@ -1,7 +1,6 @@
 package com.calculator.controller;
 
 import com.calculator.constants.CONSTANTS;
-import com.calculator.controller.builder.Builder;
 import com.calculator.model.Polynomial;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -25,10 +24,10 @@ import java.util.regex.Pattern;
 
 public class Controller implements Initializable {
 
-    public static final Background INPUT_FOCUSED = new Background(
+    private static final Background INPUT_FOCUSED = new Background(
             new BackgroundFill(Color.rgb(220, 220, 220), new CornerRadii(10), Insets.EMPTY)
     );
-    public static final Background INPUT_UNFOCUSED = new Background(
+    private static final Background INPUT_UNFOCUSED = new Background(
             new BackgroundFill(Color.rgb(180, 180, 180), new CornerRadii(10), Insets.EMPTY)
     );
 
@@ -72,7 +71,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    public void delete() {
+    protected void delete() {
         inputCurrentLength = inputCurrent.getText().length();
         if (inputCurrentLength > 0) {
             inputCurrent.setText(inputCurrent.getText().substring(0, inputCurrentLength - 1));
@@ -81,13 +80,13 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    public void deleteAll() {
+    protected void deleteAll() {
         inputCurrent.setText("");
         inputCurrentLength = 0;
     }
 
     @FXML
-    public void changeOutput(MouseEvent event) {
+    protected void changeInput(MouseEvent event) {
         if (event.getEventType().equals(MouseEvent.MOUSE_CLICKED)) {
             inputCurrent.setBackground(INPUT_FOCUSED);
             inputCurrent = (Label) event.getSource();
@@ -97,7 +96,7 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    public void calculate() {
+    protected void calculate() {
         if (checkComboBox(combobox) == -1)
             return;
         Polynomial pol1 = parseInput(input1.getText());
@@ -118,22 +117,21 @@ public class Controller implements Initializable {
     }
 
     @FXML
-    public Polynomial parseInput(String input) {
+    protected Polynomial parseInput(String input) {
         Pattern pattern = Pattern.compile(CONSTANTS.INPUT_PATTERN);
         Matcher matcher = pattern.matcher(input);
         if (input.isBlank() || input.contains("polynom"))
-            return new Polynomial();
+            return Builder.polynomial("");
         if (!matcher.matches()) {
             Alert a = new Alert(Alert.AlertType.ERROR);
             a.setContentText("Incorrect input!");
             a.show();
-            return new Polynomial();
-        } else {
-            return Builder.polynomial(input);
+            return Builder.polynomial("");
         }
+        return Builder.polynomial(input);
     }
 
-    public int checkComboBox(ComboBox<String> combobox) {
+    protected int checkComboBox(ComboBox<String> combobox) {
         if (combobox.getSelectionModel().isEmpty()) {
             Alert a = new Alert(Alert.AlertType.WARNING);
             a.setContentText("You must choose an operation first!");

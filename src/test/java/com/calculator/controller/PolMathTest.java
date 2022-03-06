@@ -1,6 +1,5 @@
 package com.calculator.controller;
 
-import com.calculator.controller.builder.Builder;
 import com.calculator.model.Polynomial;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -14,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class PolMathTest {
 
     // data for testing addition, subtraction, multiplication, derivation, integration
+    // first two elements are input polynomials
     public static List<List<String>> data() {
         return Arrays.asList(
                 Arrays.asList(
@@ -70,6 +70,16 @@ class PolMathTest {
                 ),
                 Arrays.asList(
                         "5.66X^1+X^4", "", "0", "0"
+                ),
+                Arrays.asList(
+                        "X^2+3X^4", "X^6-2X^5", "0", "+3.00X^4+1.00X^2"
+                ),
+                Arrays.asList(
+                        "1.3X^2-2.2X^1+X^0", "X^1-1X^0", "+1.30X^1-0.90X^0", "+0.10X^0"
+                ),
+                Arrays.asList(
+                        "2.5X^4-3X^3-15X^2+32X^1-2X^0", "X^2-4X^1-12X^0",
+                        "+2.50X^2+7.00X^1+43.00X^0", "+288.00X^1+514.00X^0"
                 )
         );
     }

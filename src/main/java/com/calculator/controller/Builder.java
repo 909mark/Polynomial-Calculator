@@ -1,6 +1,5 @@
-package com.calculator.controller.builder;
+package com.calculator.controller;
 
-import com.calculator.controller.PolMath;
 import com.calculator.model.Monomial;
 import com.calculator.model.Polynomial;
 
@@ -14,7 +13,7 @@ public class Builder {
 
     public static Polynomial polynomial(String input) {
         Polynomial res = new Polynomial();
-        if (input.isBlank())
+        if (input == null || input.isBlank())
             return res;
         List<String> monoms = Arrays.stream(input.split("(?=[+-])")).toList();
         double coeff;
@@ -32,4 +31,13 @@ public class Builder {
         }
         return res.refactor().sort();
     }
+
+    public static Monomial monomial(Integer degree, Double coefficient) {
+        if (degree == null || degree <= 0)
+            degree = 0;
+        if (coefficient == null || coefficient.isNaN() || coefficient.isInfinite())
+            coefficient = 1.0;
+        return new Monomial(degree, coefficient);
+    }
+
 }

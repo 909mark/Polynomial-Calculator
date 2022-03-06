@@ -1,5 +1,7 @@
 package com.calculator.model;
 
+import com.calculator.constants.CONSTANTS;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,23 +36,17 @@ public class Polynomial {
     }
 
     public Double firstCoefficient() {
-        for (Monomial monomial : terms) {
-            if (Math.abs(monomial.getCoeff()) > 0.00001)
-                return monomial.getCoeff();
-        }
-        return null;
+        return terms.get(0).getCoeff();
     }
 
     public Integer firstDegree() {
-        for (Monomial monomial : terms) {
-            if (Math.abs(monomial.getCoeff()) > 0.00001)
-                return monomial.getDegree();
-        }
-        return -1;
+        if (terms.isEmpty())
+            return -1;
+        return terms.get(0).getDegree();
     }
 
     public Polynomial refactor() {
-        terms.removeIf(monomial -> Math.abs(monomial.getCoeff()) < 0.0001);
+        terms.removeIf(monomial -> Math.abs(monomial.getCoeff()) < CONSTANTS.ZERO);
         return this;
     }
 
