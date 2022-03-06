@@ -11,7 +11,7 @@ public class Builder {
         throw new IllegalStateException("Builder is a utility class!");
     }
 
-    public static Polynomial polynomial(String input) {
+    public static Polynomial polynomial(final String input) {
         Polynomial res = new Polynomial();
         if (input == null || input.isBlank())
             return res;
